@@ -10,12 +10,11 @@ slug: junit_xml.html
 
 
 JUnit includes an XML report generator that it calls
-the [legacy xml report](https://junit.org/junit5/docs/5.5.0-RC2/api/org/junit/platform/reporting/legacy/xml/LegacyXmlReportGeneratingListener.html)
-. Many tools integrate with this format so it is very useful. However, this report has no concept of nesting tests.
+the [legacy xml report](https://junit.org/junit5/docs/5.5.0-RC2/api/org/junit/platform/reporting/legacy/xml/LegacyXmlReportGeneratingListener.html). Many tools integrate with this format so it is very useful. However, this report has no concept of nesting tests.
 Therefore when used with a nested [test style](../framework/styles.md) in Kotest, it will include parent tests as
 orphans.
 
-To solve this, Kotest has it's own implementation of the same format, that is configurable on whether to include parent
+To solve this, Kotest has its own implementation of the same format, that is configurable on whether to include parent
 tests and/or collapse the names.
 
 :::note
@@ -26,7 +25,7 @@ To configure in your project, you need to add the `JunitXmlReporter` using [proj
 
 ```kotlin
 class MyConfig : AbstractProjectConfig() {
-  override fun extensions(): List<Extension> = listOf(
+  override fun listeners(): List<Listener> = listOf(
     JunitXmlReporter(
       includeContainers = false,
       useTestPathAsName = true
